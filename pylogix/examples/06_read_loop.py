@@ -18,11 +18,11 @@ from pylogix import PLC
 import time
 
 with PLC() as comm:
-    comm.IPAddress = '192.168.1.9'
+    comm.IPAddress = '192.168.113.30'
     read = True
     while read:
         try:
-            value = comm.Read('LargeArray[0]')
+            value = comm.Read('Program:Metering_Roll.ABS_Metering_ServoOutput')
             print(value)
             time.sleep(1)
         except KeyboardInterrupt:

@@ -1,0 +1,30 @@
+'''
+the following import is only necessary because eip.py is not in this directory
+'''
+import sys
+sys.path.append('..')
+
+'''
+We're going to log a few tag values 10
+times to a CSV file
+
+For the first row, we'll write tag names,
+then log each set of values with each read
+'''
+import csv
+from pylogix import PLC
+import time
+
+with PLC() as comm:
+    comm.IPAddress = '192.168.113.30'
+
+    tags = ['Program:Winder_Ratio_Detector.WDR_DiamPresetVal_in', 'Program:Winder_Ratio_Detector.Winder_Dia_Array', 'Slide_Table_Fwd_Pos', 'Slide_Tbl_Position_Setpoint', 'Slide_Tbl_Rachet_Limit', 'Slide_Tbl_Ramped_speed_IPS', 'Store_Steering_Frame_Tension_Total', 'Store_Winder_Tens_Fdbk_Total', 'test_ref', 'Unwind_BuildUpRatio', 'Unwind_BuildUpRatioRec', 'UNwind_CalcEnblThresh_FPM', 'Unwind_CalcUpdate_Rev', 'Unwind_Constant_RPMperFPM', 'Unwind_Diam_Rachet_Limit', 'Unwind_DiamCalc_in', 'Unwind_Diameter_KPP', 'Unwind_Diameter_KPS', 'Unwind_Diameter_WLDP', 'Unwind_Diameter_WLDS', 'Unwind_DiamFR_in', 'Unwind_DiamMeas_in', 'Unwind_DiamMeasInput', 'Unwind_DiamMeasMax_DC', 'Unwind_DiamMeasMax_in', 'Unwind_DiamMeasMin_DC', 'Unwind_DiamMeasMin_in', 'Unwind_DiamMinEC_in', 'Unwind_DiamPresetVal_in', 'Unwind_DiamRate_inRev', 'Unwind_FR_Position_Feedback', 'Unwind_GearRatio', 'Unwind_IP_Output', 'Unwind_Jog_AccDec_Rate', 'Unwind_JogFwd_Reference', 'Unwind_JogRev_Reference', 'Unwind_KPP_Array', 'Unwind_KPS_Array', 'Unwind_Line_speed_Ref', 'Unwind_Norm_AccDec_Rate', 'Unwind_Position_Loop_Error', 'Unwind_Position_Vernier', 'Unwind_RadiusCalc_ft', 'Unwind_Ramped_speed', 'Unwind_Ramped_speed_FPS', 'Unwind_Scaled_FPM', 'Unwind_spd_FB', 'Unwind_SpeedLine_FPM', 'Unwind_SpeedMotor_RPM', 'Unwind_Tension_Loop_Error', 'Unwind_Tension_Vernier', 'Unwind_WLDP_Array', 'Unwind_WLDS_Array', 'Unwind_Wound_length', 'unwinder_ServoOutput', 'unwinder_VelocityFdbk', 'Virtual_Axis_spd_FB', 'Weigh_Winder_Tens_Fdbk_Total', 'Wiegh_Stored_Str_Frm_Total'] 
+
+
+    with open('32_log.csv', 'w') as csv_file:
+        csv_file = csv.writer(csv_file, delimiter=',', lineterminator='\n', quotechar='/', quoting=csv.QUOTE_MINIMAL)
+        csv_file.writerow(tags)
+        for i in range(10):
+            values = comm.Read(tags)
+            csv_file.writerow(values)
+            time.sleep(.25)

@@ -15,7 +15,8 @@ more tags, you wouldn't want to call .Close() every time.
 from pylogix import PLC
 
 comm = PLC()
-comm.IPAddress = '192.168.1.9'
-value = comm.Read('CurrentScreen')
+comm.IPAddress = '192.168.111.249'
+comm.ProcessorSlot = 3 
+value = comm.Read('Dest_IP')
 print(value)
 comm.Close()

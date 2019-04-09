@@ -14,10 +14,10 @@ Linux distributions, so you may need to install it.
 For Ubuntu: sudo apt-get install python-tk
 '''
 from pylogix import PLC
-from Tkinter import *
+from tkinter import *
 
-tagName = 'Time.Second'
-ipAddress = '192.168.1.9'
+tagName = 'Program:Metering_Roll.ABS_Metering_ServoOutput'
+ipAddress = '192.168.113.30'
 
 def main():
     '''
@@ -36,12 +36,13 @@ def main():
     root.config(background='black')
     root.title = 'Production Count'
     root.geometry('800x600')
+    # default is 1920X1080
     
     # bind the "q" key to quit
     root.bind('q', lambda event:root.destroy())
     
     # create a labe to display our variable
-    ProductionCount = Label(root, text='n', fg='white', bg='black', font='Helvetica 350 bold')
+    ProductionCount = Label(root, text='n', fg='white', bg='black', font='Helvetica 24 bold')
     ProductionCount.place(anchor=CENTER, relx=0.5, rely=0.5)
     
     # call our updater and show our window

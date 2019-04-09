@@ -15,7 +15,8 @@ just main tag names.
 from pylogix import PLC
 
 with PLC() as comm:
-    comm.IPAddress = '192.168.1.9'
+    comm.IPAddress = '192.168.111.249'
+    comm.ProcessorSlot = 3 
     tags = comm.GetTagList(False)
     
     for t in tags:
