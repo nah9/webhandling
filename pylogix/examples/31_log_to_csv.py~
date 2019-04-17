@@ -18,9 +18,16 @@ with PLC() as comm:
      
     with open('31_log.csv', 'w') as csv_file:
         csv_file = csv.writer(csv_file, delimiter=',', quotechar='/', quoting=csv.QUOTE_MINIMAL)
+<<<<<<< HEAD
         for i in range(1000):
-            new = datetime.now()
+            now = datetime.now()
             now = now.strftime('%d-%m-%Y %H:%M:%S.%f')
             value = comm.Read('Avg_Steering_Frame_Tension_Total', datatype=202)
             csv_file.writerow([now, value])
             #time.sleep(1)
+=======
+        for i in range(100):
+            value = comm.Read('Program:Winder.Wind_Pos_Step_Ref')
+            csv_file.writerow([value])
+            time.sleep(1)
+>>>>>>> b1fc1739d57a996a1a9c96ab00883ce966fa9e60

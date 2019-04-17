@@ -42,6 +42,8 @@ def main():
     root.bind('q', lambda event:root.destroy())
     
     # create a labe to display our variable
+    ProductionLabel = Label(root, text='n', fg='white', bg='black', font='Helvetica 24 bold')
+    ProductionLabel.place(anchor=CENTER, relx=1.0, rely=1.0)
     ProductionCount = Label(root, text='n', fg='white', bg='black', font='Helvetica 24 bold')
     ProductionCount.place(anchor=CENTER, relx=0.5, rely=0.5)
     
@@ -55,6 +57,7 @@ def UpdateValue():
     Call ourself to update the screen
     '''
     ProductionCount['text'] = comm.Read(tagName) 
+    ProductionLabel['text'] = tagName
     root.after(500, UpdateValue)
 
 if __name__=='__main__':

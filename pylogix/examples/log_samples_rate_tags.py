@@ -6,9 +6,14 @@ import os
 sys.path.append('..')
 samples = sys.argv[1]
 samples = int(samples)
+<<<<<<< HEAD
 #rate = sys.argv[2]
 #rate = float(rate)
 testname = sys.argv[2]
+=======
+rate = sys.argv[2]
+rate = float(rate)
+>>>>>>> b1fc1739d57a996a1a9c96ab00883ce966fa9e60
 filename = sys.argv[3]
 
 dirpath = os.getcwd()

@@ -17,6 +17,6 @@ from pylogix import PLC
 comm = PLC()
 comm.IPAddress = '192.168.111.249'
 comm.ProcessorSlot = 3 
-value = comm.Read('Dest_IP')
+value = comm.Read('_EWEB_PATH')
 print(value)
 comm.Close()
